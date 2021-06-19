@@ -14,7 +14,7 @@ def preprocessing(frame):
     # 이미지 정규화
     frame_normalized = (frame_resized.astype(np.float32) / 127.0) - 1
     
-    # 이미지 차원 재조정 - 예측을 위해 reshape 해줍니다.
+    # 이미지 차원 재조정 - 예측을 위한 reshape
     frame_reshaped = frame_normalized.reshape((1, 224, 224, 3))
     
     return frame_reshaped
@@ -24,12 +24,8 @@ def preprocessing(frame):
 model_filename = 'keras_model.h5'
 model = tensorflow.keras.models.load_model(model_filename)
 
-# 카메라 캡쳐 객체, 0=내장 카메라
-capture = cv2.VideoCapture(0)           #ipcam사용시 여기의 0을 바꿔주세요
+capture = cv2.VideoCapture(0)
 
-
-#camera=PiCamera()
-#camera.framerate = 32
 # 캡쳐 프레임 사이즈 조절
 capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
